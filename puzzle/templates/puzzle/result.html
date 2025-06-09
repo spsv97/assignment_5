@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Puzzle Results</title>
+  </head>
+  <body>
+    <h1>The Interactive Treasure Hunt</h1>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+
+    {% if result %}
+    <h2>Results</h2>
+    <p><strong>Number Puzzle:</strong> {{ result.number_result }}</p>
+    <p><strong>Binary Text:</strong> {{ result.binary_text }}</p>
+    <p><strong>Vowel Count:</strong> {{ result.vowel_count }}</p>
+    <h3>Treasure Hunt</h3>
+    <ul>
+      {% for step in result.treasure_steps %}
+      <li>{{ step }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
